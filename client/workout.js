@@ -36,7 +36,17 @@ exerciseValue.addEventListener('click', addExercise)
 function addExercise(e){
     e.preventDefault()
     let div = document.createElement('div');
-    div.innerHTML = e.target.id; div.id = 'exercise'
+    let h2 = document.createElement('h2');
+    let innerDiv = document.createElement('div');
+    let button = document.createElement('button');
+    div.id = 'exercise'
+    h2.id = 'exercise-name'; h2.textContent = e.target.id;
+    innerDiv.id = 'add-set';
+    button.id = 'add-set-btn'; button.innerHTML = 'Add Set'
+    div.appendChild(h2)
+    div.appendChild(innerDiv)
+    div.appendChild(button)
+    document.getElementById('add-exercise-block').appendChild(div)
 
 
     toggleList()
