@@ -1,0 +1,259 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: url(https://images.unsplash.com/photo-1521805103424-d8f8430e8933?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8d2VpZ2h0c3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 15vh;
+    width: 45vw;
+    border-radius: 25vh;
+}
+
+#workout-name {
+    text-transform: uppercase;
+    font-size: 20vh;
+    color: #f8f7f9;
+    font-family: Verdana, sans-serif;
+}
+
+#time {
+    margin-bottom: 2vh;
+    margin-top: 2vh;
+}
+
+#time-text {
+    color: #2dfc2d;
+}
+
+.exercise {
+    margin: 2vh;
+    height: auto;
+    width: 95vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(98, 97, 140, 0.8);
+    border-radius: 5vh;
+    border: solid #77777c .5vh;
+}
+
+#exercise-name, #add-exercise-name, #another-name {
+    font-size: 5vh;
+    text-transform: uppercase;
+    font-family: Verdana, sans-serif;
+    color: #a0dafc;
+    text-align: center;
+}
+
+#add-set-set {
+    text-align: center;
+    width: 75%;
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 1%;
+}
+
+#add-set{
+    text-align: center;
+    width: 80%;
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1%;
+}
+
+#set-rep, #set-weight, #set-set {
+    font-size: 1.5vw;
+    color: #f8f7f9;
+    display: flex;
+    flex-direction: row;
+}
+
+#delete-set {
+    color: red;
+    background: none;
+    border: none;
+    font-size: 1.5vh;
+    cursor: pointer;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+#pick-exercise {
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    opacity: .8;
+    background-color: black;
+    position: fixed;
+    display: none;
+}
+
+#exercise-dropdown{
+    display: none;
+    position: absolute;
+    z-index: 100;
+    left: 50%;
+    width: 25vw;
+    height: 50vw;
+    transform: translate(-50%);
+}
+
+#exercise-dropdown{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#exercise-list {
+    height: 45vh;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    list-style: none;
+    margin: 0;
+    border-radius: .5vh;
+}
+
+#exercise-dropdown li {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 2vh;
+    font-weight: bold;
+    color: #f8f7f9;
+    display: flex;
+
+}
+#exercise-dropdown li:hover {
+    cursor: pointer;
+    color: #a0dafc;
+}
+
+#exercise-dropdown button {
+    border: none;
+    font-size: 1.2vw;
+    background: none;
+    color: #2dfc2d;
+}
+
+#exercise-dropdown button:hover{
+    cursor: pointer;
+    color: #a0dafc;
+}
+
+#set-set-count {
+    color: #2DFC2DFF;
+    font-size: 1.5vw;
+    margin-left: 1vw;
+    font-family: sans-serif;
+}
+
+#set-weight-num, #set-rep-num {
+    margin-left: 1vw;
+    width: 4vw;
+    background-color: transparent;
+    color: #2DFC2DFF;
+    font-size: 1.5vw;
+    border: transparent;
+    font-family: sans-serif;
+}
+
+#add-set-btn {
+    background: none;
+    font-family: sans-serif;
+    font-size: 1.5vw;
+    color: #A0DAFCFF;
+    cursor: pointer;
+    border: none
+}
+
+#finish {
+    font-family: sans-serif;
+    font-size: 5vh;
+    color: #a0dafc;
+    position: relative;
+    left: 42vw;
+    top: 2vh;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+#create-modal {
+    position: sticky;
+    left: 50%;
+    top: 35%;
+    width: 40vw;
+    height: 25vh;
+    overflow: auto;
+    background: none;
+    border: none;
+    border-radius: 5vh;
+    transform: translate(-50%);
+}
+
+#modal-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 11%;
+}
+
+#cancel-btn {
+    background: none;
+    border: none;
+    font-size: 5vh;
+    color: #f85050;
+    font-family: sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#save-workout {
+    background: none;
+    border: none;
+    font-size: 5vh;
+    color: #2DFC2DFF;
+    font-family: sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#modal-overlay {
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    opacity: .8;
+    background-color: black;
+    position: fixed;
+    display: none;
+}

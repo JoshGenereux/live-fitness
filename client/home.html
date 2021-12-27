@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Live Fitness</title>
+</head>
+    <body id="body">
+
+    <div id="create-modal">
+        <div id="modal-content">
+            <button id="close">&times;</button>
+            <form id="custom-input">
+                <p id="custom-input-p">Please enter workout name</p>
+                <label>
+                    <input id="custom-input-text" type="text">
+                    <button type="submit">Workout!</button>
+                </label>
+            </form>
+        </div>
+    </div>
+
+    <header class="header">
+        <h1 class="header-words">Pick A Workout</h1>
+    </header>
+
+    <main class="main">
+        <aside class="left-box">
+            <button id="custom-button">Create New Workout</button>
+        </aside>
+        <aside class="right-box">
+            <div id="prv-wk">Previous Workouts</div>
+            <button id="workout-btn-1"></button>
+            <button id="workout-btn-2"></button>
+            <button id="workout-btn-3"></button>
+            <button id="workout-btn-4"></button>
+        </aside>
+    </main>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="home.js" rel="script"></script>
+    <link rel="stylesheet" href="home.css">
+</body>
+</html>

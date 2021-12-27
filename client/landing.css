@@ -1,0 +1,38 @@
+video {
+    object-fit: cover;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.header {
+    height: 100vh;
+    position: relative;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+h1 {
+    font-size: 25vh;
+    color: #f8f7f9;
+}
+
+.button {
+    background-color: transparent;
+    font-size: 5vh;
+    color: #f8f7f9;
+    border: none;
+}
+
+.button:hover {
+    background-color: transparent;
+    font-size: 5vh;
+    color: #49e54d;
+    border: none;
+    cursor: pointer;
+}

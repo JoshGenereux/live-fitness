@@ -1,0 +1,129 @@
+#body {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: url(https://images.unsplash.com/photo-1584827386894-fc939dad6078?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fHdlaWdodHN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 15vh;
+    width: 55vw;
+    border-radius: 25vh;
+    margin-bottom: 10vh;
+}
+
+.header-words {
+    font-size: 8vw;
+    color: #f8f7f9;
+}
+
+.main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: auto;
+}
+
+.left-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 60vh;
+    width: 50vw;
+    background-color: transparent;
+    border-radius: 25vh;
+}
+
+#custom-button {
+    background-color: transparent;
+    font-size: 3vw;
+    border: #26f0f1;
+    border-radius: 25vh;
+    color: #f8f7f9;
+    text-align: center;
+}
+#custom-button:hover {
+    cursor: pointer;
+    font-size: 3.2vw;
+}
+
+.right-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 60vh;
+    width: 50vw;
+    background-color: transparent;
+}
+
+#prv-wk {
+    font-size: 7vh;
+    border-radius: 25vh;
+    width: 45%;
+    text-align: center;
+    color: #f8f7f9;
+    margin-bottom: 2vh;
+}
+#workout-btn-1, #workout-btn-2,#workout-btn-3,#workout-btn-4 {
+    background-color: transparent;
+    font-size: 2vw;
+    border-radius: 25vh;
+    margin-top: 5vh;
+    cursor: pointer;
+    color: #f8f7f9;
+    border: transparent;
+}
+.workout-btn:hover {
+    font-size: 2.2vw;
+}
+
+#create-modal {
+    display: none;
+    position: absolute;
+    z-index: 100;
+    left: 50%;
+    top: 50%;
+    width: 15vw;
+    height: 10vh;
+    overflow: auto;
+    background: #f8f7f9;
+    transform: translate(-50%);
+}
+
+#custom-input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#close {
+    color: black;
+    float: right;
+    font-size: 150%;
+    font-weight: bold;
+    border: transparent;
+    cursor: pointer;
+
+}
+#close:hover{
+    color: red;
+}
+
+#custom-input-p {
+    font-size: 100%;
+}
