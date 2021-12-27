@@ -18,8 +18,7 @@ module.exports = {
                  
                  CREATE TABLE ${workoutName}(
                  exercise SERIAL PRIMARY KEY,
-                 exercise_name VARCHAR(30) NOT NULL,
-                 sets INT);`
+                 exercise_name VARCHAR(30) NOT NULL);`
         )
             .then(dbRes =>{
                 res.status(200).send(dbRes[0])
@@ -34,9 +33,20 @@ module.exports = {
             }).catch(err => console.log(err))
     },
     addExercise: (req, res)=>{
-        let {sets,exerciseName, workoutName} = req.body
-        sequelize.query(`INSERT INTO ${workoutName} (exercise_name,sets)
-                             VALUES ('${exerciseName}', ${sets})`)
+        let {exerciseName, workoutName} = req.body
+        sequelize.query(`INSERT INTO ${workoutName} (exercise_name)
+                             VALUES ('${exerciseName}')`)
+            .then(dbRes =>{
+                res.status(200).send(dbRes[0])
+            }).catch(err => console.log(err))
+    },
+    createExerciseTable: (req, res)=>{
+        let {exerciseName} = req.body
+        sequelize.query(`CREATE TABLE ${exerciseName}(
+                              set SERIAL PRIMARY KEY,
+                              weight INT,
+                              reps INT)
+                             `)
             .then(dbRes =>{
                 res.status(200).send(dbRes[0])
             }).catch(err => console.log(err))

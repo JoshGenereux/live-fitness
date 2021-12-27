@@ -11,5 +11,6 @@ app.use(cors())
 app.post('/live-fitness', ctrl.addWorkout)
 app.get('/live-fitness', ctrl.getWorkouts)
 app.post('/live-fitness/workout', ctrl.addExercise)
+app.post('/live-fitness/workout/add-exercise', ctrl.createExerciseTable)
 
 app.listen(SP, ()=>console.log(`Running on port ${SP}`))

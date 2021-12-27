@@ -2,7 +2,6 @@ const pickExercise = document.getElementById('exercise-list-btn')
 const exerciseValue = document.getElementById('exercise-list')
 const URL = `http://localhost:5432/live-fitness/workout`
 
-
 window.onload = function (e) {
     document.getElementById('workout-name').innerHTML =
         window.localStorage.getItem('workoutName')
@@ -30,40 +29,82 @@ pickExercise.addEventListener('click', ()=>{
     const list = document.getElementById('pick-exercise')
     list.style.display = 'block'
 })
-
 exerciseValue.addEventListener('click', addExercise)
 
 function addExercise(e){
     e.preventDefault()
-    let div = document.createElement('div');
-    let h2 = document.createElement('h2');
-    let innerDiv = document.createElement('div');
-    let button = document.createElement('button');
-    div.id = 'exercise'
-    h2.id = 'exercise-name'; h2.textContent = e.target.id;
-    innerDiv.id = 'add-set';
-    button.id = 'add-set-btn'; button.innerHTML = 'Add Set'
-    div.appendChild(h2)
-    div.appendChild(innerDiv)
-    div.appendChild(button)
+    let div = document.createElement('div');div.id = 'exercise'
+    let h2 = document.createElement('h2');h2.id = 'exercise-name'; h2.textContent = e.target.id;
+    let innerDiv = document.createElement('div');innerDiv.id = `add-set`;
+    let button = document.createElement('button');button.id = 'add-set-btn'; button.innerHTML = 'Add Set'
+    div.appendChild(h2);div.appendChild(innerDiv);div.appendChild(button)
     document.getElementById('add-exercise-block').appendChild(div)
     let workoutName = document.getElementById('workout-name')
-    console.log(h2.innerHTML)
-
     toggleList()
+    addSetBtn()
 
     let body = {
         workoutName: workoutName.innerHTML,
         exerciseName: h2.innerHTML,
         sets: 0
     }
+    let removeSpace = h2.innerHTML.replace(/ /g, "_")
+    let exerciseBody = {
+        exerciseName: removeSpace,
+    }
 
     axios.post(URL, body)
         .then(res =>{
             console.log(res.data)
         }).catch(err => console.log(err))
+    axios.post(`${URL}/add-exercise`, exerciseBody)
+        .then( res => {
+            console.log(res.data)
+        }).catch(err => console.log(err))
+}
+
+function addSetBtn(){
+    if(document.getElementById('add-set-btn') !== null){
+        const button = document.getElementById('add-set-btn')
+        button.addEventListener('click', addSet)
+    }
+}
+
+function addSet(){
+    let div = document.createElement('div'); div.id = 'add-set-set'
+    let innerDiv1 = document.createElement('div'); innerDiv1.id = 'set-set';
+    let thirdDiv1 = document.createElement('div'); thirdDiv1.id ='set-div'; thirdDiv1.textContent = 'Set:'
+    let setP = document.createElement('p'); setP.id = 'set-set-count'; setP.textContent = '1'
+    innerDiv1.appendChild(thirdDiv1); innerDiv1.appendChild(setP);
+    let innerDiv2 = document.createElement('div'); innerDiv2.id ='set-weight'
+    let thirdDiv2 = document.createElement('div'); thirdDiv2.id ='weight-div'; thirdDiv2.textContent = 'Weight:'
+    let input = document.createElement('input'); input.id = 'set-weight-num'; input.type = 'number';
+    innerDiv2.appendChild(thirdDiv2); innerDiv2.appendChild(input);
+    let innerDiv3 = document.createElement('div'); innerDiv3.id = 'set-rep';
+    let thirdDiv3 = document.createElement('div'); thirdDiv3.id = 'sets-div'; thirdDiv3.textContent='Reps:'
+    let setInput = document.createElement('input'); setInput.id = 'set-rep-num'; setInput.type = 'number';
+    innerDiv3.appendChild(thirdDiv3); innerDiv3.appendChild(setInput)
+    let innerDiv4 = document.createElement('div'); innerDiv4.id = 'button-div';
+    let button = document.createElement('button'); button.id = 'delete-set';button.textContent = 'Delete'
+    innerDiv4.appendChild(button); button.innerHTML = 'Delete Set'
+    div.appendChild(innerDiv1); div.appendChild(innerDiv2); div.appendChild(innerDiv3); div.appendChild(innerDiv4)
+    let addSet = document.getElementById(`add-set`); addSet.appendChild(div)
+    let exerciseName = document.getElementById('exercise-name')
+
+    input.addEventListener('change', ()=>{
+        console.log(input.value, exerciseName.innerHTML)
+        let body = {
+            weight: input.value,
+            exerciseName: exerciseName.innerHTML
+        }
+    })
 
 }
+
+
+
+
+
 
 
 
