@@ -1,6 +1,6 @@
 const pickExercise = document.getElementById('exercise-list-btn')
 const exerciseValue = document.getElementById('exercise-list')
-const URL = `http://localhost:5432/live-fitness`
+const URL = `http://localhost:5432/live-fitness/workout`
 
 
 window.onload = function (e) {
@@ -47,19 +47,21 @@ function addExercise(e){
     div.appendChild(innerDiv)
     div.appendChild(button)
     document.getElementById('add-exercise-block').appendChild(div)
-
+    let workoutName = document.getElementById('workout-name')
+    console.log(h2.innerHTML)
 
     toggleList()
 
-    // let body = {
-    //     name: name.value,
-    //     workoutName: workoutName.value
-    // }
-    //
-    // axios.post(URL, body)
-    //     .then(res =>{
-    //         console.log(res.data)
-    //     }).catch(err => console.log(err))
+    let body = {
+        workoutName: workoutName.innerHTML,
+        exerciseName: h2.innerHTML,
+        sets: 0
+    }
+
+    axios.post(URL, body)
+        .then(res =>{
+            console.log(res.data)
+        }).catch(err => console.log(err))
 
 }
 

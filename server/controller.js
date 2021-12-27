@@ -17,10 +17,9 @@ module.exports = {
             `DROP TABLE IF EXISTS ${workoutName};
                  
                  CREATE TABLE ${workoutName}(
-                 set SERIAL PRIMARY KEY,
-                 name VARCHAR(30) NOT NULL,
-                 weight INT NOT NULL,
-                 reps INT NOT NULL);`
+                 exercise SERIAL PRIMARY KEY,
+                 exercise_name VARCHAR(30) NOT NULL,
+                 sets INT);`
         )
             .then(dbRes =>{
                 res.status(200).send(dbRes[0])
@@ -35,9 +34,9 @@ module.exports = {
             }).catch(err => console.log(err))
     },
     addExercise: (req, res)=>{
-        let {name, workoutName} = req.body
-        sequelize.query(`INSERT INTO ${workoutName} (name)
-                             VALUES ('${name}')`)
+        let {sets,exerciseName, workoutName} = req.body
+        sequelize.query(`INSERT INTO ${workoutName} (exercise_name,sets)
+                             VALUES ('${exerciseName}', ${sets})`)
             .then(dbRes =>{
                 res.status(200).send(dbRes[0])
             }).catch(err => console.log(err))
