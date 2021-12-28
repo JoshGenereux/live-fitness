@@ -1,5 +1,6 @@
 const pickExercise = document.getElementById('exercise-list-btn')
 const exerciseValue = document.getElementById('exercise-list')
+const finish = document.getElementById('finish')
 const URL = `http://localhost:5432/live-fitness/workout`
 
 window.onload = function (e) {
@@ -42,7 +43,6 @@ function addExercise(e){
     let workoutName = document.getElementById('workout-name')
     toggleList()
 
-
     let body = {
         workoutName: workoutName.innerHTML,
         exerciseName: h2.innerHTML,
@@ -54,13 +54,9 @@ function addExercise(e){
     }
 
     axios.post(`${URL}/add-exercise`, exerciseBody)
-        .then( res => {
-            // console.log(res.data)
-        }).catch(err => console.log(err))
+        .then().catch(err => console.log(err))
     axios.post(URL, body)
-        .then(res =>{
-            // console.log(res.data)
-        }).catch(err => console.log(err))
+        .then().catch(err => console.log(err))
 }
 
 document.querySelector('body').addEventListener('click', addSetBtn)
@@ -70,13 +66,14 @@ function addSetBtn(e){
     }
 }
 
+let count = 1;
 function addSet(){
     let div = document.createElement('div'); div.id = 'add-set-set'
     let innerDiv1 = document.createElement('div'); innerDiv1.id = 'set-set';
-    let thirdDiv1 = document.createElement('div'); thirdDiv1.id ='set-div'; thirdDiv1.textContent = 'Set:'
-    let setP = document.createElement('p'); setP.id = 'set-set-count';
+    let thirdDiv1 = document.createElement('div'); thirdDiv1.id ='set-div'; thirdDiv1.textContent = `Set: `
+    let setP = document.createElement('p'); setP.id = 'set-set-count'; setP.innerHTML = `${count}`
     innerDiv1.appendChild(thirdDiv1); innerDiv1.appendChild(setP);
-    let innerDiv2 = document.createElement('div'); innerDiv2.id ='set-weight'
+    let innerDiv2 = document.createElement('div'); innerDiv2.id ='set-weight';
     let thirdDiv2 = document.createElement('div'); thirdDiv2.id ='weight-div'; thirdDiv2.textContent = 'Weight:'
     let input = document.createElement('input'); input.id = 'set-weight-num'; input.type = 'number';
     innerDiv2.appendChild(thirdDiv2); innerDiv2.appendChild(input);
@@ -90,33 +87,32 @@ function addSet(){
     div.appendChild(innerDiv1); div.appendChild(innerDiv2); div.appendChild(innerDiv3); div.appendChild(innerDiv4)
     let addSet = document.getElementById(`add-set`);
     addSet.appendChild(div)
+    count++;
+    // let name = document.getElementById('exercise-name').innerHTML.replace(/ /g, "_")
+    // let setBody = {
+    //     exerciseName: name,
+    //     set: count
+    // }
 
-    // input.addEventListener('change', ()=>{
-    //     console.log(input.value, exerciseName.innerHTML)
-    //     let body = {
-    //         weight: input.value,
-    //         exerciseName: exerciseName.innerHTML
-    //     }
-    //     axios.post(`${URL}/add-exercise`, body)
-    //         .then(res => {
-    //             console.log(res.data)
-    //         }).catch(err => console.log(err))
-    // })
-    let name = document.getElementById('exercise-name').innerHTML.replace(/ /g, "_")
-    console.log(name)
-    let setBody = {
-        exerciseName: name
-    }
+    // axios.post(`${URL}/add-set`, setBody).catch(err => console.log(err))
+    // axios.post(`${URL}/get-set`, setBody).catch(err => console.log(err))
 
-    axios.post(`${URL}/get-set`, setBody)
-        .then(res =>{
-            console.log(res.data)
-            // innerDiv1.innerHTML = res.data
-        }).catch(err => console.log(err))
+
 }
 
+// document.querySelector('body').addEventListener('change', addWeight)
+// function addWeight(e){
+//     let weight = document.getElementById('set-weight-num')
+//     if(e.target === weight){
+//         console.log(weight.value)
+//
+//     }
+// }
 
+finish.addEventListener('click', finishFunc);
+function finishFunc(){
 
+}
 
 
 

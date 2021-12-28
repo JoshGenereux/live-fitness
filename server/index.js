@@ -13,6 +13,7 @@ app.get('/live-fitness', ctrl.getWorkouts)
 app.post('/live-fitness/workout/add-exercise', ctrl.createExerciseTable)
 app.post('/live-fitness/workout', ctrl.addExercise)
 // app.post('/live-fitness/workout/add-set', ctrl.addSet)
-app.post('/live-fitness/workout/get-set', ctrl.getSet)
+// app.post('/live-fitness/workout/get-set', ctrl.getSet)
+// app.post('/live-fitness/workout/add-weight', ctrl.addWeight)
 
 app.listen(SP, ()=>console.log(`Running on port ${SP}`))
