@@ -111,7 +111,10 @@ function addSet(){
 
 finish.addEventListener('click', finishFunc);
 function finishFunc(){
-
+    document.getElementById('modal-overlay').style.display = 'block'
+    document.getElementById('cancel-btn').addEventListener('click', ()=>{
+        document.getElementById('modal-overlay').style.display = 'none'
+    })
 }
 
 
