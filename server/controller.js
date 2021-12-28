@@ -42,13 +42,29 @@ module.exports = {
     },
     createExerciseTable: (req, res)=>{
         let {exerciseName} = req.body
-        sequelize.query(`CREATE TABLE ${exerciseName}(
+        sequelize.query(`DROP TABLE IF EXISTS ${exerciseName};
+                              CREATE TABLE ${exerciseName}(
                               set SERIAL PRIMARY KEY,
                               weight INT,
                               reps INT)
                              `)
             .then(dbRes =>{
                 res.status(200).send(dbRes[0])
+            }).catch(err => console.log(err))
+    },
+    addSet: (req, res) =>{
+        let {weight, exerciseName} = req.body;
+        sequelize.query(`INSERT INTO ${exerciseName} (weight)
+                             VALUES (${weight})`)
+            .then(dbRes => {
+                res.status(200).send(dbRes[0])
+            }).catch(err => console.log(err))
+    },
+    getSet: (req, res)=>{
+        let {exerciseName} = req.body
+        sequelize.query(`SELECT * FROM ${exerciseName};`)
+            .then(dbRes => {
+                res.status(200).send(dbRes)
             }).catch(err => console.log(err))
     }
 }

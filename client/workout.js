@@ -41,7 +41,7 @@ function addExercise(e){
     document.getElementById('add-exercise-block').appendChild(div)
     let workoutName = document.getElementById('workout-name')
     toggleList()
-    addSetBtn()
+
 
     let body = {
         workoutName: workoutName.innerHTML,
@@ -53,20 +53,20 @@ function addExercise(e){
         exerciseName: removeSpace,
     }
 
-    axios.post(URL, body)
-        .then(res =>{
-            console.log(res.data)
-        }).catch(err => console.log(err))
     axios.post(`${URL}/add-exercise`, exerciseBody)
         .then( res => {
-            console.log(res.data)
+            // console.log(res.data)
+        }).catch(err => console.log(err))
+    axios.post(URL, body)
+        .then(res =>{
+            // console.log(res.data)
         }).catch(err => console.log(err))
 }
 
-function addSetBtn(){
-    if(document.getElementById('add-set-btn') !== null){
-        const button = document.getElementById('add-set-btn')
-        button.addEventListener('click', addSet)
+document.querySelector('body').addEventListener('click', addSetBtn)
+function addSetBtn(e){
+    if(e.target.id === 'add-set-btn'){
+        addSet()
     }
 }
 
@@ -74,7 +74,7 @@ function addSet(){
     let div = document.createElement('div'); div.id = 'add-set-set'
     let innerDiv1 = document.createElement('div'); innerDiv1.id = 'set-set';
     let thirdDiv1 = document.createElement('div'); thirdDiv1.id ='set-div'; thirdDiv1.textContent = 'Set:'
-    let setP = document.createElement('p'); setP.id = 'set-set-count'; setP.textContent = '1'
+    let setP = document.createElement('p'); setP.id = 'set-set-count';
     innerDiv1.appendChild(thirdDiv1); innerDiv1.appendChild(setP);
     let innerDiv2 = document.createElement('div'); innerDiv2.id ='set-weight'
     let thirdDiv2 = document.createElement('div'); thirdDiv2.id ='weight-div'; thirdDiv2.textContent = 'Weight:'
@@ -88,17 +88,31 @@ function addSet(){
     let button = document.createElement('button'); button.id = 'delete-set';button.textContent = 'Delete'
     innerDiv4.appendChild(button); button.innerHTML = 'Delete Set'
     div.appendChild(innerDiv1); div.appendChild(innerDiv2); div.appendChild(innerDiv3); div.appendChild(innerDiv4)
-    let addSet = document.getElementById(`add-set`); addSet.appendChild(div)
-    let exerciseName = document.getElementById('exercise-name')
+    let addSet = document.getElementById(`add-set`);
+    addSet.appendChild(div)
 
-    input.addEventListener('change', ()=>{
-        console.log(input.value, exerciseName.innerHTML)
-        let body = {
-            weight: input.value,
-            exerciseName: exerciseName.innerHTML
-        }
-    })
+    // input.addEventListener('change', ()=>{
+    //     console.log(input.value, exerciseName.innerHTML)
+    //     let body = {
+    //         weight: input.value,
+    //         exerciseName: exerciseName.innerHTML
+    //     }
+    //     axios.post(`${URL}/add-exercise`, body)
+    //         .then(res => {
+    //             console.log(res.data)
+    //         }).catch(err => console.log(err))
+    // })
+    let name = document.getElementById('exercise-name').innerHTML.replace(/ /g, "_")
+    console.log(name)
+    let setBody = {
+        exerciseName: name
+    }
 
+    axios.post(`${URL}/get-set`, setBody)
+        .then(res =>{
+            console.log(res.data)
+            // innerDiv1.innerHTML = res.data
+        }).catch(err => console.log(err))
 }
 
 

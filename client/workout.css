@@ -258,3 +258,18 @@
     position: fixed;
     display: none;
 }
+
+#exercise-list-btn {
+    background: none;
+    border: none;
+    color: #49e54d;
+    font-family: sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 2vh;
+}
+
+#exercise-list-btn:hover {
+    cursor: pointer;
+    color: #45d94a;
+}
