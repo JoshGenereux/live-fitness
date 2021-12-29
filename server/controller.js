@@ -57,7 +57,6 @@ module.exports = {
         sequelize.query(`INSERT INTO ${exerciseName} (set)
                              VALUES ('${set}')`)
             .then(dbRes => {
-                count++;
                 res.status(200).send(dbRes[0])
             }).catch(err => console.log(err))
     },

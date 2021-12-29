@@ -32,12 +32,13 @@ pickExercise.addEventListener('click', ()=>{
 })
 exerciseValue.addEventListener('click', addExercise)
 
+let count = 1;
 function addExercise(e){
     e.preventDefault()
-    let div = document.createElement('div');div.id = 'exercise'
+    let div = document.createElement('div');div.id = `exercise`
     let h2 = document.createElement('h2');h2.id = 'exercise-name'; h2.textContent = e.target.id;
     let innerDiv = document.createElement('div');innerDiv.id = `add-set`;
-    let button = document.createElement('button');button.id = 'add-set-btn'; button.innerHTML = 'Add Set'
+    let button = document.createElement('button');button.id = `add-set-btn`; button.innerHTML = 'Add Set'
     div.appendChild(h2);div.appendChild(innerDiv);div.appendChild(button)
     document.getElementById('add-exercise-block').appendChild(div)
     let workoutName = document.getElementById('workout-name')
@@ -52,7 +53,6 @@ function addExercise(e){
     let exerciseBody = {
         exerciseName: removeSpace,
     }
-
     axios.post(`${URL}/add-exercise`, exerciseBody)
         .then().catch(err => console.log(err))
     axios.post(URL, body)
@@ -61,15 +61,14 @@ function addExercise(e){
 
 document.querySelector('body').addEventListener('click', addSetBtn)
 function addSetBtn(e){
-    if(e.target.id === 'add-set-btn'){
+    if(e.target.textContent === 'Add Set'){
         addSet()
     }
+    console.log(e.target)
 }
-
-let count = 1;
 function addSet(){
-    let div = document.createElement('div'); div.id = 'add-set-set'
-    let innerDiv1 = document.createElement('div'); innerDiv1.id = 'set-set';
+    let div = document.createElement('div'); div.id = `add-set-set`
+    let innerDiv1 = document.createElement('div'); innerDiv1.id = `set-set`;
     let thirdDiv1 = document.createElement('div'); thirdDiv1.id ='set-div'; thirdDiv1.textContent = `Set: `
     let setP = document.createElement('p'); setP.id = 'set-set-count'; setP.innerHTML = `${count}`
     innerDiv1.appendChild(thirdDiv1); innerDiv1.appendChild(setP);
@@ -85,36 +84,57 @@ function addSet(){
     let button = document.createElement('button'); button.id = 'delete-set';button.textContent = 'Delete'
     innerDiv4.appendChild(button); button.innerHTML = 'Delete Set'
     div.appendChild(innerDiv1); div.appendChild(innerDiv2); div.appendChild(innerDiv3); div.appendChild(innerDiv4)
-    let addSet = document.getElementById(`add-set`);
-    addSet.appendChild(div)
+    let add = document.getElementById(`add-set`);
+    add.appendChild(div)
+    let name = document.getElementById('exercise-name').innerHTML.replace(/ /g, "_")
     count++;
-    // let name = document.getElementById('exercise-name').innerHTML.replace(/ /g, "_")
-    // let setBody = {
-    //     exerciseName: name,
-    //     set: count
-    // }
-
-    // axios.post(`${URL}/add-set`, setBody).catch(err => console.log(err))
-    // axios.post(`${URL}/get-set`, setBody).catch(err => console.log(err))
-
-
+    let setBody = {
+        exerciseName: name,
+        set: count
+    }
+    axios.post(`${URL}/add-set`, setBody).catch(err => console.log(err))
+    axios.post(`${URL}/get-set`, setBody).catch(err => console.log(err))
 }
 
 // document.querySelector('body').addEventListener('change', addWeight)
 // function addWeight(e){
-//     let weight = document.getElementById('set-weight-num')
+//     let weight = document.querySelector('.set-weight-num')
+//     let name = document.querySelector('.exercise-name').innerHTML.replace(/ /g, "_")
 //     if(e.target === weight){
 //         console.log(weight.value)
-//
+//         let body = {
+//             weight: weight.value,
+//             exerciseName: name
+//         }
+//         axios.post(`${URL}/add-weight`, body)
+//             .then(res => {
+//                 console.log(res.data)
+//             }).catch(err => console.log(err))
 //     }
 // }
 
+document.querySelector('body').addEventListener('change', addRep)
+function addRep(e){
+    let rep = document.querySelector('.set-rep-num')
+    if(e.target === rep){
+        console.log(rep.value)
+    }
+}
+
 finish.addEventListener('click', finishFunc);
 function finishFunc(){
-    document.getElementById('modal-overlay').style.display = 'block'
-    document.getElementById('cancel-btn').addEventListener('click', ()=>{
-        document.getElementById('modal-overlay').style.display = 'none'
-    })
+    // document.getElementById('modal-overlay').style.display = 'block'
+    // document.getElementById('cancel-btn').addEventListener('click', ()=>{
+    //     document.getElementById('modal-overlay').style.display = 'none'
+    // })
+    // document.getElementById('save-workout').addEventListener('click', ()=>{
+    //     let set = document.getElementById('set-set-count')
+    //     let weight = document.getElementById('set-weight-num')
+    //     let reps = document.getElementById('set-rep-num')
+    //     let exercise = document.getElementById('exercise-name')
+    //     console.log(set.innerHTML, weight.value, reps.value, exercise.innerHTML)
+    //
+    // })
 }
 
 
