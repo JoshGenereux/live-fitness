@@ -44,7 +44,6 @@ function addExercise(e){
     document.getElementById('add-exercise-block').appendChild(div)
     let workoutName = document.getElementById('workout-name')
     toggleList()
-    console.log(`addExercise count = ${count}`)
     count++;
 
     let body = {
@@ -62,16 +61,34 @@ function addExercise(e){
         .then().catch(err => console.log(err))
 }
 
+let setCount = 1;
+function addSet(num){
+    let div = document.createElement('div'); div.id = `add-set-set`
+    let innerDiv1 = document.createElement('div'); innerDiv1.id = `set-set`;
+    let thirdDiv1 = document.createElement('div'); thirdDiv1.id ='set-div'; thirdDiv1.textContent = `Set: `
+    let setP = document.createElement('p'); setP.id = `set-set-count`; setP.innerHTML = '5'
+    innerDiv1.appendChild(thirdDiv1); innerDiv1.appendChild(setP);
+    let innerDiv2 = document.createElement('div'); innerDiv2.id ='set-weight';
+    let thirdDiv2 = document.createElement('div'); thirdDiv2.id ='weight-div'; thirdDiv2.textContent = 'Weight:'
+    let input = document.createElement('input'); input.id = 'set-weight-num'; input.type = 'number';
+    innerDiv2.appendChild(thirdDiv2); innerDiv2.appendChild(input);
+    let innerDiv3 = document.createElement('div'); innerDiv3.id = 'set-rep';
+    let thirdDiv3 = document.createElement('div'); thirdDiv3.id = 'sets-div'; thirdDiv3.textContent='Reps:'
+    let setInput = document.createElement('input'); setInput.id = 'set-rep-num'; setInput.type = 'number';
+    innerDiv3.appendChild(thirdDiv3); innerDiv3.appendChild(setInput)
+    let innerDiv5 = document.createElement('div'); innerDiv5.id = 'save-div'
+    let saveB = document.createElement('button'); saveB.id = 'save-set'; saveB.innerHTML = '&#10004';
+    innerDiv5.appendChild(saveB);
+    let innerDiv4 = document.createElement('div'); innerDiv4.id = 'button-div';
+    let button = document.createElement('button'); button.id = 'delete-set';button.innerHTML = '&#9746'
+    innerDiv4.appendChild(button);
+    div.appendChild(innerDiv1); div.appendChild(innerDiv2); div.appendChild(innerDiv3); div.appendChild(innerDiv5)
+    div.appendChild(innerDiv4)
+    let add = document.getElementById(`add-set${num}`);
+    add.appendChild(div)
+    setCount++;
+}
 document.querySelector('body').addEventListener('click', addSetBtn)
-// function addSetBtn(e){
-//     if(e.target.id === `add-set-btn1`){
-//         addSet(1)
-//     } else if(e.target.id === `add-set-btn2`){
-//         addSet(2)
-//     } else
-//     console.log(e.target)
-// }
-
 function addSetBtn(e){
     switch (e.target.id) {
         case 'add-set-btn1':
@@ -95,65 +112,6 @@ function addSetBtn(e){
     }
 }
 
-let setCount = 1;
-function addSet(num){
-    let div = document.createElement('div'); div.id = `add-set-set`
-    let innerDiv1 = document.createElement('div'); innerDiv1.id = `set-set`;
-    let thirdDiv1 = document.createElement('div'); thirdDiv1.id ='set-div'; thirdDiv1.textContent = `Set: `
-    let setP = document.createElement('p'); setP.id = `set-set-count`;
-    innerDiv1.appendChild(thirdDiv1); innerDiv1.appendChild(setP);
-    let innerDiv2 = document.createElement('div'); innerDiv2.id ='set-weight';
-    let thirdDiv2 = document.createElement('div'); thirdDiv2.id ='weight-div'; thirdDiv2.textContent = 'Weight:'
-    let input = document.createElement('input'); input.id = 'set-weight-num'; input.type = 'number';
-    innerDiv2.appendChild(thirdDiv2); innerDiv2.appendChild(input);
-    let innerDiv3 = document.createElement('div'); innerDiv3.id = 'set-rep';
-    let thirdDiv3 = document.createElement('div'); thirdDiv3.id = 'sets-div'; thirdDiv3.textContent='Reps:'
-    let setInput = document.createElement('input'); setInput.id = 'set-rep-num'; setInput.type = 'number';
-    innerDiv3.appendChild(thirdDiv3); innerDiv3.appendChild(setInput)
-    let innerDiv4 = document.createElement('div'); innerDiv4.id = 'button-div';
-    let button = document.createElement('button'); button.id = 'delete-set';button.textContent = 'Delete'
-    innerDiv4.appendChild(button); button.innerHTML = 'Delete Set'
-    div.appendChild(innerDiv1); div.appendChild(innerDiv2); div.appendChild(innerDiv3); div.appendChild(innerDiv4)
-    let add = document.getElementById(`add-set${num}`);
-    add.appendChild(div)
-    let name = document.getElementById('exercise-name').innerHTML.replace(/ /g, "_")
-    setCount++;
-
-    let number = 1;
-    let setBody = {
-        exerciseName: name,
-        set: number
-    }
-    // axios.post(`${URL}/add-set`, setBody).catch(err => console.log(err))
-    // axios.post(`${URL}/get-set`, setBody).catch(err => console.log(err))
-    number++;
-}
-
-// document.querySelector('body').addEventListener('change', addWeight)
-// function addWeight(e){
-//     let weight = document.querySelector('.set-weight-num')
-//     let name = document.querySelector('.exercise-name').innerHTML.replace(/ /g, "_")
-//     if(e.target === weight){
-//         console.log(weight.value)
-//         let body = {
-//             weight: weight.value,
-//             exerciseName: name
-//         }
-//         axios.post(`${URL}/add-weight`, body)
-//             .then(res => {
-//                 console.log(res.data)
-//             }).catch(err => console.log(err))
-//     }
-// }
-
-document.querySelector('body').addEventListener('change', addRep)
-function addRep(e){
-    let rep = document.querySelector('.set-rep-num')
-    if(e.target === rep){
-        console.log(rep.value)
-    }
-}
-
 finish.addEventListener('click', finishFunc);
 function finishFunc(){
     // document.getElementById('modal-overlay').style.display = 'block'
@@ -170,6 +128,20 @@ function finishFunc(){
     // })
 }
 
+document.querySelector('body').addEventListener('click', saveBtn)
+
+function saveBtn(e) {
+    let row = document.getElementById('add-set-set')
+    if (e.target.id === 'save-set') {
+        row.style.backgroundColor = 'rgba(76, 204, 85, 0.8)';
+    }
+
+    let exercise = document.getElementById('exercise-name').innerHTML;
+    let set = document.getElementById('set-set-count').innerHTML
+    let weight = document.getElementById('set-weight-num').value
+
+    console.log(exercise, set, weight)
+}
 
 
 
