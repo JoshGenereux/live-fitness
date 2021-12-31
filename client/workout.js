@@ -61,12 +61,12 @@ function addExercise(e){
         .then().catch(err => console.log(err))
 }
 
-let setCount = 1;
-function addSet(num){
-    let div = document.createElement('div'); div.id = `add-set-set`
+
+function addSet(num, set){
+    let div = document.createElement('div'); div.id = `${num}new-sets${set}`
     let innerDiv1 = document.createElement('div'); innerDiv1.id = `set-set`;
     let thirdDiv1 = document.createElement('div'); thirdDiv1.id ='set-div'; thirdDiv1.textContent = `Set: `
-    let setP = document.createElement('p'); setP.id = `set-set-count`; setP.innerHTML = '1'
+    let setP = document.createElement('p'); setP.id = `${num}set-count${set}`; setP.innerHTML = `${set}`
     innerDiv1.appendChild(thirdDiv1); innerDiv1.appendChild(setP);
     let innerDiv2 = document.createElement('div'); innerDiv2.id ='set-weight';
     let thirdDiv2 = document.createElement('div'); thirdDiv2.id ='weight-div'; thirdDiv2.textContent = 'Weight:'
@@ -77,7 +77,7 @@ function addSet(num){
     let setInput = document.createElement('input'); setInput.id = 'set-rep-num'; setInput.type = 'number';
     innerDiv3.appendChild(thirdDiv3); innerDiv3.appendChild(setInput)
     let innerDiv5 = document.createElement('div'); innerDiv5.id = 'save-div'
-    let saveB = document.createElement('button'); saveB.id = 'save-set'; saveB.innerHTML = '&#10004';
+    let saveB = document.createElement('button'); saveB.id = `${num}save-set${set}`; saveB.innerHTML = '&#10004';
     innerDiv5.appendChild(saveB);
     let innerDiv4 = document.createElement('div'); innerDiv4.id = 'button-div';
     let button = document.createElement('button'); button.id = 'delete-set';button.innerHTML = '&#9746'
@@ -86,28 +86,52 @@ function addSet(num){
     div.appendChild(innerDiv4)
     let add = document.getElementById(`add-set${num}`);
     add.appendChild(div)
-    setCount++;
 }
+
 document.querySelector('body').addEventListener('click', addSetBtn)
+let one = 1;let two = 1;let three = 1;let four = 1;let five = 1;
+let six = 1;let seven = 1;let eight = 1;let nine = 1;let ten = 1;
 function addSetBtn(e){
     switch (e.target.id) {
         case 'add-set-btn1':
-            addSet(1)
+            addSet(1, one)
+            one++;
             break
         case 'add-set-btn2':
-            addSet(2)
+            addSet(2, two)
+            two++;
             break
         case 'add-set-btn3':
-            addSet(3)
+            addSet(3, three)
+            three++;
             break
         case 'add-set-btn4':
-            addSet(4)
+            addSet(4, four)
+            four++;
             break
         case 'add-set-btn5':
-            addSet(5)
+            addSet(5, five)
+            five++;
             break
         case 'add-set-btn6':
-            addSet(6)
+            addSet(6, six)
+            six++;
+            break
+        case 'add-set-btn7':
+            addSet(7, seven)
+            seven++;
+            break
+        case 'add-set-btn8':
+            addSet(8, eight)
+            eight++;
+            break
+        case 'add-set-btn9':
+            addSet(9, nine)
+            nine++;
+            break
+        case 'add-set-btn10':
+            addSet(10, ten)
+            ten++;
             break
     }
 }
@@ -128,26 +152,12 @@ function finishFunc(){
     // })
 }
 
-function toggleSave(){
-    const save = document.getElementById('add-set-set')
-    save.style.backgroundColor === 'rgba(96, 94, 164, 0.8)' ? save.style.backgroundColor = 'rgba(61,135,67,0.8)' : save.style.backgroundColor = 'rgba(96, 94, 164, 0.8)';
-}
-
 document.querySelector('body').addEventListener('click', saveBtn)
 function saveBtn(e) {
-    let row = document.getElementById('add-set-set')
-    if (e.target.id === 'save-set') {
-        toggleSave()
-        // row.style.backgroundColor = 'rgba(61,135,67,0.8)';
-
-        let exercise = document.getElementById('exercise-name').innerHTML;
-        let set = document.getElementById('set-set-count').innerHTML
-        let weight = document.getElementById('set-weight-num')
-
-        console.log(exercise, set, weight.value)
+    if(e.target.innerHTML === '&#10004'){
+        let button = e.target;
+        console.log(button)
     }
-
-
 }
 
 

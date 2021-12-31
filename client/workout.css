@@ -63,7 +63,7 @@ div[id*="exercise-blockk"] {
     text-align: center;
 }
 
-#add-set-set {
+div[id*="new-sets"]{
     text-align: center;
     width: 75%;
     height: 20%;
@@ -168,7 +168,7 @@ div[id*="add-set"]{
     color: #a0dafc;
 }
 
-#set-set-count {
+p[id*="set-count"] {
     color: #2DFC2DFF;
     font-size: 1.5vw;
     margin-left: 1vw;
@@ -266,6 +266,7 @@ button[id*="add-set-btn"] {
     font-weight: bold;
     text-transform: uppercase;
     font-size: 2vh;
+    margin-bottom: 10vh;
 }
 
 #exercise-list-btn:hover {
@@ -273,7 +274,7 @@ button[id*="add-set-btn"] {
     color: #45d94a;
 }
 
-#save-set {
+button[id*='save-set'] {
     color: #49e54d;
     background: none;
     font-size: 2.5vh;
