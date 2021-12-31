@@ -140,26 +140,14 @@ function addSetBtn(e){
     }
 }
 
-finish.addEventListener('click', finishFunc);
-function finishFunc(){
-    // document.getElementById('modal-overlay').style.display = 'block'
-    // document.getElementById('cancel-btn').addEventListener('click', ()=>{
-    //     document.getElementById('modal-overlay').style.display = 'none'
-    // })
-    // document.getElementById('save-workout').addEventListener('click', ()=>{
-    //     let set = document.getElementById('set-set-count')
-    //     let weight = document.getElementById('set-weight-num')
-    //     let reps = document.getElementById('set-rep-num')
-    //     let exercise = document.getElementById('exercise-name')
-    //     console.log(set.innerHTML, weight.value, reps.value, exercise.innerHTML)
-    //
-    // })
-}
+// finish.addEventListener('click', finishFunc);
+// function finishFunc(){
+//     axios.get()
+// }
 
 function saveBtn(e) {
     let button = e.target
     button.style.backgroundColor = 'green'
-    button.disabled = true
     let node = (e.target.parentElement.parentElement)
     let set = node.getElementsByClassName('set')[0].innerHTML
     let weight = node.getElementsByClassName('weight')[0]
@@ -181,8 +169,12 @@ function saveBtn(e) {
             console.log(res)
         }).catch(err => console.log(err))
 
+    button.addEventListener('click', redo)
+}
 
-
+function redo(e){
+    let button = e.target
+    button.style.backgroundColor = 'grey'
 }
 
 
