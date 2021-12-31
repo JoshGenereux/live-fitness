@@ -66,7 +66,7 @@ function addSet(num){
     let div = document.createElement('div'); div.id = `add-set-set`
     let innerDiv1 = document.createElement('div'); innerDiv1.id = `set-set`;
     let thirdDiv1 = document.createElement('div'); thirdDiv1.id ='set-div'; thirdDiv1.textContent = `Set: `
-    let setP = document.createElement('p'); setP.id = `set-set-count`; setP.innerHTML = '5'
+    let setP = document.createElement('p'); setP.id = `set-set-count`; setP.innerHTML = '1'
     innerDiv1.appendChild(thirdDiv1); innerDiv1.appendChild(setP);
     let innerDiv2 = document.createElement('div'); innerDiv2.id ='set-weight';
     let thirdDiv2 = document.createElement('div'); thirdDiv2.id ='weight-div'; thirdDiv2.textContent = 'Weight:'
@@ -128,19 +128,26 @@ function finishFunc(){
     // })
 }
 
-document.querySelector('body').addEventListener('click', saveBtn)
+function toggleSave(){
+    const save = document.getElementById('add-set-set')
+    save.style.backgroundColor === 'rgba(96, 94, 164, 0.8)' ? save.style.backgroundColor = 'rgba(61,135,67,0.8)' : save.style.backgroundColor = 'rgba(96, 94, 164, 0.8)';
+}
 
+document.querySelector('body').addEventListener('click', saveBtn)
 function saveBtn(e) {
     let row = document.getElementById('add-set-set')
     if (e.target.id === 'save-set') {
-        row.style.backgroundColor = 'rgba(76, 204, 85, 0.8)';
+        toggleSave()
+        // row.style.backgroundColor = 'rgba(61,135,67,0.8)';
+
+        let exercise = document.getElementById('exercise-name').innerHTML;
+        let set = document.getElementById('set-set-count').innerHTML
+        let weight = document.getElementById('set-weight-num')
+
+        console.log(exercise, set, weight.value)
     }
 
-    let exercise = document.getElementById('exercise-name').innerHTML;
-    let set = document.getElementById('set-set-count').innerHTML
-    let weight = document.getElementById('set-weight-num').value
 
-    console.log(exercise, set, weight)
 }
 
 
