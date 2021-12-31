@@ -158,10 +158,14 @@ function finishFunc(){
 
 function saveBtn(e) {
     let button = e.target
+    button.style.backgroundColor = 'green'
+    button.disabled = true
     let node = (e.target.parentElement.parentElement)
     let set = node.getElementsByClassName('set')[0].innerHTML
     let weight = node.getElementsByClassName('weight')[0]
+    weight.disabled = true;
     let reps = node.getElementsByClassName('rep')[0]
+    reps.disabled = true;
     let exercise = node.parentElement.parentElement.getElementsByClassName('exercise')[0]
     let removeSpace = exercise.innerHTML.replace(/ /g, "_")
 
@@ -171,12 +175,14 @@ function saveBtn(e) {
         weight: weight.value,
         reps: reps.value
     }
-    console.log(removeSpace)
 
     axios.post(`${URL}/save-set`, body)
         .then(res => {
             console.log(res)
         }).catch(err => console.log(err))
+
+
+
 }
 
 
