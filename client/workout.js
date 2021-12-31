@@ -37,7 +37,8 @@ let count = 1;
 function addExercise(e){
     e.preventDefault()
     let div = document.createElement('div');div.id = `exercise-blockk${count}`
-    let h2 = document.createElement('h2');h2.id = 'exercise-name'; h2.textContent = e.target.id;
+    let h2 = document.createElement('h2');h2.id = `exercise-name${count}`; h2.textContent = e.target.id;
+    h2.className = 'exercise'
     let innerDiv = document.createElement('div');innerDiv.id = `add-set${count}`;
     let button = document.createElement('button');button.id = `add-set-btn${count}`; button.innerHTML = 'Add Set'
     div.appendChild(h2);div.appendChild(innerDiv);div.appendChild(button)
@@ -57,8 +58,8 @@ function addExercise(e){
     }
     axios.post(`${URL}/add-exercise`, exerciseBody)
         .then().catch(err => console.log(err))
-    axios.post(URL, body)
-        .then().catch(err => console.log(err))
+    // axios.post(URL, body)
+    //     .then().catch(err => console.log(err))
 }
 
 
@@ -67,20 +68,23 @@ function addSet(num, set){
     let innerDiv1 = document.createElement('div'); innerDiv1.id = `set-set`;
     let thirdDiv1 = document.createElement('div'); thirdDiv1.id ='set-div'; thirdDiv1.textContent = `Set: `
     let setP = document.createElement('p'); setP.id = `${num}set-count${set}`; setP.innerHTML = `${set}`
+    setP.className = 'set'
     innerDiv1.appendChild(thirdDiv1); innerDiv1.appendChild(setP);
     let innerDiv2 = document.createElement('div'); innerDiv2.id ='set-weight';
     let thirdDiv2 = document.createElement('div'); thirdDiv2.id ='weight-div'; thirdDiv2.textContent = 'Weight:'
-    let input = document.createElement('input'); input.id = 'set-weight-num'; input.type = 'number';
+    let input = document.createElement('input'); input.id = `${num}set-weightnum${set}`; input.type = 'number';
+    input.className = 'weight'
     innerDiv2.appendChild(thirdDiv2); innerDiv2.appendChild(input);
     let innerDiv3 = document.createElement('div'); innerDiv3.id = 'set-rep';
     let thirdDiv3 = document.createElement('div'); thirdDiv3.id = 'sets-div'; thirdDiv3.textContent='Reps:'
-    let setInput = document.createElement('input'); setInput.id = 'set-rep-num'; setInput.type = 'number';
+    let setInput = document.createElement('input'); setInput.id = `${set}set-repnum${set}`; setInput.type = 'number';
+    setInput.className = 'rep'
     innerDiv3.appendChild(thirdDiv3); innerDiv3.appendChild(setInput)
     let innerDiv5 = document.createElement('div'); innerDiv5.id = 'save-div'
     let saveB = document.createElement('button'); saveB.id = `${num}save-set${set}`; saveB.innerHTML = '&#10004';
-    innerDiv5.appendChild(saveB);
+    saveB.onclick = saveBtn; innerDiv5.appendChild(saveB);
     let innerDiv4 = document.createElement('div'); innerDiv4.id = 'button-div';
-    let button = document.createElement('button'); button.id = 'delete-set';button.innerHTML = '&#9746'
+    let button = document.createElement('button'); button.id = `${num}delete-set${set}`;button.innerHTML = '&#9746'
     innerDiv4.appendChild(button);
     div.appendChild(innerDiv1); div.appendChild(innerDiv2); div.appendChild(innerDiv3); div.appendChild(innerDiv5)
     div.appendChild(innerDiv4)
@@ -152,12 +156,27 @@ function finishFunc(){
     // })
 }
 
-document.querySelector('body').addEventListener('click', saveBtn)
 function saveBtn(e) {
-    if(e.target.innerHTML === '&#10004'){
-        let button = e.target;
-        console.log(button)
+    let button = e.target
+    let node = (e.target.parentElement.parentElement)
+    let set = node.getElementsByClassName('set')[0].innerHTML
+    let weight = node.getElementsByClassName('weight')[0]
+    let reps = node.getElementsByClassName('rep')[0]
+    let exercise = node.parentElement.parentElement.getElementsByClassName('exercise')[0]
+    let removeSpace = exercise.innerHTML.replace(/ /g, "_")
+
+    let body = {
+        exercise: removeSpace,
+        set: set,
+        weight: weight.value,
+        reps: reps.value
     }
+    console.log(removeSpace)
+
+    axios.post(`${URL}/save-set`, body)
+        .then(res => {
+            console.log(res)
+        }).catch(err => console.log(err))
 }
 
 

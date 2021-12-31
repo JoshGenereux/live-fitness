@@ -52,27 +52,12 @@ module.exports = {
                 res.status(200).send(dbRes[0])
             }).catch(err => console.log(err))
     },
-    addSet: (req, res) =>{
-        let {set, exerciseName} = req.body;
-        sequelize.query(`INSERT INTO ${exerciseName} (set)
-                             VALUES ('${set}')`)
-            .then(dbRes => {
-                res.status(200).send(dbRes[0])
-            }).catch(err => console.log(err))
-    },
-    getSet: (req, res)=>{
-        let {exerciseName} = req.body
-        sequelize.query(`SELECT * FROM ${exerciseName};`)
+    saveSet: (req, res) => {
+        let {exercise, set, reps, weight} = req.body
+        sequelize.query(`INSERT INTO ${exercise} (weight, reps) 
+                             VALUES (${weight}, ${reps})`)
             .then(dbRes => {
                 res.status(200).send(dbRes)
-            }).catch(err => console.log(err))
-    },
-    addWeight: (req, res) => {
-        let {weight, exerciseName} = req.body
-        sequelize.query(`INSERT INTO ${exerciseName} (weight)
-                             VALUES (${weight})`)
-            .then(dbRes => {
-                res.status(200).send(dbRes[0])
             }).catch(err => console.log(err))
     }
 }

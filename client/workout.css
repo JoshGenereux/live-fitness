@@ -55,7 +55,7 @@ div[id*="exercise-blockk"] {
     border: solid #77777c .5vh;
 }
 
-#exercise-name {
+.exercise {
     font-size: 5vh;
     text-transform: uppercase;
     font-family: Verdana, sans-serif;
@@ -95,7 +95,7 @@ div[id*="add-set"]{
     flex-direction: row;
 }
 
-#delete-set {
+button[id*="delete-set"] {
     color: red;
     background: none;
     font-size: 2.5vh;
@@ -175,7 +175,7 @@ p[id*="set-count"] {
     font-family: sans-serif;
 }
 
-#set-weight-num, #set-rep-num {
+input[id*="set-weightnum"], input[id*="set-repnum"] {
     margin-left: 1vw;
     width: 4vw;
     background-color: transparent;
