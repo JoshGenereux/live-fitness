@@ -32,14 +32,6 @@ module.exports = {
                 res.status(200).send(dbRes[0])
             }).catch(err => console.log(err))
     },
-    addExercise: (req, res)=>{
-        let {exerciseName, workoutName} = req.body
-        sequelize.query(`INSERT INTO ${workoutName} (exercise_name)
-                             VALUES ('${exerciseName}')`)
-            .then(dbRes =>{
-                res.status(200).send(dbRes[0])
-            }).catch(err => console.log(err))
-    },
     createExerciseTable: (req, res)=>{
         let {exerciseName} = req.body
         sequelize.query(`DROP TABLE IF EXISTS ${exerciseName};
@@ -59,5 +51,8 @@ module.exports = {
             .then(dbRes => {
                 res.status(200).send(dbRes)
             }).catch(err => console.log(err))
+    },
+    finish: (req, res) => {
+
     }
 }

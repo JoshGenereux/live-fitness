@@ -140,14 +140,10 @@ function addSetBtn(e){
     }
 }
 
-// finish.addEventListener('click', finishFunc);
-// function finishFunc(){
-//     axios.get()
-// }
-
 function saveBtn(e) {
     let button = e.target
     button.style.backgroundColor = 'green'
+    button.disabled = true;
     let node = (e.target.parentElement.parentElement)
     let set = node.getElementsByClassName('set')[0].innerHTML
     let weight = node.getElementsByClassName('weight')[0]
@@ -169,13 +165,20 @@ function saveBtn(e) {
             console.log(res)
         }).catch(err => console.log(err))
 
-    button.addEventListener('click', redo)
 }
 
-function redo(e){
-    let button = e.target
-    button.style.backgroundColor = 'grey'
+finish.addEventListener('click', finishFunc);
+function finishFunc(){
+    let workout = document.getElementsByClassName('exercise')
+    for(let i = 0;)
+
+    axios.get(`${URL}/finish`)
+        .then(res => {
+            console.log(res)
+        }).catch(err =>console.log(err))
 }
+
+
 
 
 
