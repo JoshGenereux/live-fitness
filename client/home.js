@@ -62,10 +62,10 @@ window.onload = function (e){
     e.preventDefault()
     axios.get(URL)
         .then(res =>{
-            for(let i = 0; i < 5; i++){
-                let str = res.data[i].exercise_name;
-                document.getElementById(`workout-btn-${i}`).innerHTML = upperFirst(str)
-            }
+            document.getElementById('workout-btn-0').innerHTML = upperFirst(res.data[res.data.length -1].exercise_name)
+            document.getElementById('workout-btn-1').innerHTML = upperFirst(res.data[res.data.length -2].exercise_name)
+            document.getElementById('workout-btn-2').innerHTML = upperFirst(res.data[res.data.length -3].exercise_name)
+            document.getElementById('workout-btn-3').innerHTML = upperFirst(res.data[res.data.length -4].exercise_name)
         })
 }
 
