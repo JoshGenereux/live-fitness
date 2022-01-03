@@ -8,8 +8,9 @@ const {SERVER_PORT: SP} = process.env
 app.use(express.json())
 app.use(cors())
 
-app.post('/live-fitness', ctrl.addWorkout)
+app.post('/live-fitness', ctrl.seedWorkout)
 app.get('/live-fitness', ctrl.getWorkouts)
+app.post('/live-fitness/add-to-table', ctrl.addTo)
 app.post('/live-fitness/workout/create-exercise-table', ctrl.createExerciseTable)
 app.post('/live-fitness/workout/save-set', ctrl.saveSet)
 app.post('live-fitness/workout/add-exercise', ctrl.addExercise)

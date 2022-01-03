@@ -11,12 +11,9 @@ const sequelize = new Sequelize(CS, {
 })
 
 module.exports = {
-    addWorkout: (req, res)=>{
-        let {workoutName} = req.body
+    seedWorkout: (req, res)=>{
         sequelize.query(
-            `DROP TABLE IF EXISTS ${workoutName};
-                 
-                 CREATE TABLE ${workoutName}(
+            `CREATE TABLE IF NOT EXISTS live_fitness(
                  exercise SERIAL PRIMARY KEY,
                  exercise_name VARCHAR(30) NOT NULL);`
         )
@@ -26,8 +23,7 @@ module.exports = {
             .catch(err => console.log(err))
     },
     getWorkouts: (req, res)=>{
-        sequelize.query(`SELECT * FROM information_schema.TABLES WHERE table_schema = 
-                             'public';`)
+        sequelize.query(`SELECT * FROM live_fitness ORDER BY exercise;`)
             .then(dbRes =>{
                 res.status(200).send(dbRes[0])
             }).catch(err => console.log(err))
@@ -60,5 +56,13 @@ module.exports = {
                 res.status(200).send(dbRes)
             }).catch(err => console.log(err))
     },
+    addTo: (req, res) => {
+        let {exerciseName} = req.body
+        sequelize.query(`INSERT INTO live_fitness (exercise_name)
+                             VALUES ('${exerciseName}')`)
+            .then(dbRes => {
+                res.status(200).send(dbRes)
+            }).catch(err => console.log(err))
+    }
 
 }
