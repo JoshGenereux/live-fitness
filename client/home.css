@@ -58,6 +58,7 @@
 #custom-button:hover {
     cursor: pointer;
     font-size: 3.2vw;
+    color: #49e54d;
 }
 
 .right-box {
@@ -78,7 +79,7 @@
     color: #f8f7f9;
     margin-bottom: 2vh;
 }
-#workout-btn-1, #workout-btn-2,#workout-btn-3,#workout-btn-4 {
+button[id*="workout-btn"] {
     background-color: transparent;
     font-size: 2vw;
     border-radius: 25vh;
@@ -87,8 +88,8 @@
     color: #f8f7f9;
     border: transparent;
 }
-.workout-btn:hover {
-    font-size: 2.2vw;
+button[id*="workout-btn"]:hover {
+    color: #49e54d;
 }
 
 #create-modal {
@@ -97,11 +98,13 @@
     z-index: 100;
     left: 50%;
     top: 50%;
-    width: 15vw;
-    height: 10vh;
+    width: 25vw;
+    height: 15vh;
     overflow: auto;
-    background: #f8f7f9;
+    background: rgba(98, 97, 140, 0.8);
     transform: translate(-50%);
+    border: solid #77777c .4vh;
+    border-radius: 3vh;
 }
 
 #custom-input{
@@ -109,16 +112,18 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    font-size: 3vh;
+    color: #a0dafc;
 }
 
 #close {
-    color: black;
+    color: #a0dafc;
     float: right;
     font-size: 150%;
     font-weight: bold;
     border: transparent;
     cursor: pointer;
-
+    background: none;
 }
 #close:hover{
     color: red;
@@ -126,4 +131,17 @@
 
 #custom-input-p {
     font-size: 100%;
+}
+
+#submit {
+    background: none;
+    border: solid #77777c .4vh;
+    color: #a0dafc;
+    border-radius: 1vh;
+    font-size: 1.5vh;
+}
+
+#submit:hover {
+    color: #49e54d;
+    cursor: pointer;
 }

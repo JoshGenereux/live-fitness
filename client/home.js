@@ -44,7 +44,7 @@ window.onload = function (e){
     axios.get(URL)
         .then(res =>{
             let last = res.data.length -1;
-            console.log(res.data)
+            console.log(res.data[last])
             document.getElementById('workout-btn-1').innerHTML = res.data[last].table_name;
             document.getElementById('workout-btn-2').innerHTML = res.data[last-1].table_name;
             document.getElementById('workout-btn-3').innerHTML = res.data[last-2].table_name;
