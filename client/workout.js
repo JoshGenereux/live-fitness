@@ -56,10 +56,10 @@ function addExercise(e){
     let exerciseBody = {
         exerciseName: removeSpace
     }
-    axios.post(`${URL}/add-exercise`, exerciseBody)
+    axios.post(`${URL}/create-exercise-table`, exerciseBody)
         .then().catch(err => console.log(err))
-    // axios.post(URL, body)
-    //     .then().catch(err => console.log(err))
+    axios.post(`${URL}/add-exercise`, body)
+        .then().catch(err => console.log(err))
 }
 
 
@@ -83,11 +83,7 @@ function addSet(num, set){
     let innerDiv5 = document.createElement('div'); innerDiv5.id = 'save-div'
     let saveB = document.createElement('button'); saveB.id = `${num}save-set${set}`; saveB.innerHTML = '&#10004';
     saveB.onclick = saveBtn; innerDiv5.appendChild(saveB);
-    let innerDiv4 = document.createElement('div'); innerDiv4.id = 'button-div';
-    let button = document.createElement('button'); button.id = `${num}delete-set${set}`;button.innerHTML = '&#9746'
-    innerDiv4.appendChild(button);
     div.appendChild(innerDiv1); div.appendChild(innerDiv2); div.appendChild(innerDiv3); div.appendChild(innerDiv5)
-    div.appendChild(innerDiv4)
     let add = document.getElementById(`add-set${num}`);
     add.appendChild(div)
 }
@@ -169,14 +165,19 @@ function saveBtn(e) {
 
 finish.addEventListener('click', finishFunc);
 function finishFunc(){
-    let workout = document.getElementsByClassName('exercise')
-    for(let i = 0;)
-
-    axios.get(`${URL}/finish`)
-        .then(res => {
-            console.log(res)
-        }).catch(err =>console.log(err))
+    let modal = document.getElementById('modal-overlay')
+    modal.style.display = 'block'
+    let cancel = document.getElementById('cancel-btn')
+    cancel.addEventListener('click', ()=>{
+        modal.style.display = 'none'
+    })
+    let finish = document.getElementById('save-workout')
+    finish.addEventListener('click', ()=>{
+        window.open('home.html', "_self")
+    })
 }
+
+
 
 
 
