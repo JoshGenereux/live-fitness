@@ -38,17 +38,20 @@ workoutInput.addEventListener('submit', (e)=>{
         }).catch(err =>console.log(err))
 })
 
+function upperFirst(string){
+    return string.charAt(0).toUpperCase() + string.slice(1)
+}
+
 window.onload = function (e){
     e.preventDefault()
 
     axios.get(URL)
         .then(res =>{
-            let last = res.data.length -1;
-            console.log(res.data[last])
-            document.getElementById('workout-btn-1').innerHTML = res.data[last].table_name;
-            document.getElementById('workout-btn-2').innerHTML = res.data[last-1].table_name;
-            document.getElementById('workout-btn-3').innerHTML = res.data[last-2].table_name;
-            document.getElementById('workout-btn-4').innerHTML = res.data[last-3].table_name;
+            // let last = res.data.length -1;
+            for(let i = 0; i < 5; i++){
+                let str = res.data[i].table_name;
+                document.getElementById(`workout-btn-${i}`).innerHTML = upperFirst(str)
+            }
         })
 }
 
