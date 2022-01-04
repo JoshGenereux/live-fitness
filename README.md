@@ -1,4 +1,4 @@
-#**Fitness Tracker**
+# **Fitness Tracker**
 
 ### - This is a workout tracking app, that you can use to keep track of your sets/reps/weight used during each workout.
 
