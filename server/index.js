@@ -5,6 +5,9 @@ const app = express()
 const path = require('path')
 const ctrl = require('./controller')
 const {SERVER_PORT: SP} = process.env
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/landing.html'))
+})
 app.use(express.json())
 app.use(cors())
 
