@@ -50,12 +50,13 @@ function addExercise(e){
     let body = {
         workoutName: workoutName.innerHTML,
         exerciseName: h2.innerHTML,
-        sets: 0
     }
     let removeSpace = h2.innerHTML.replace(/ /g, "_")
     let exerciseBody = {
         exerciseName: removeSpace
     }
+    console.log(body)
+
     axios.post(`${URL}/create-exercise-table`, exerciseBody)
         .then().catch(err => console.log(err))
     axios.post(`${URL}/add-exercise`, body)

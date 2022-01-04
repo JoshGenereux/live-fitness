@@ -41,6 +41,7 @@ module.exports = {
             }).catch(err => console.log(err))
     },
     addExercise: (req, res)=>{
+        console.log('endpoint')
         let {workoutName, exerciseName} = req.body;
         sequelize.query(`INSERT INTO ${workoutName} (exercise_name)
                              VALUES ('${exerciseName}')`)
@@ -60,6 +61,16 @@ module.exports = {
         let {exerciseName} = req.body
         sequelize.query(`INSERT INTO live_fitness (exercise_name)
                              VALUES ('${exerciseName}')`)
+            .then(dbRes => {
+                res.status(200).send(dbRes)
+            }).catch(err => console.log(err))
+    },
+    workoutTable: (req, res) => {
+        let {workoutName} = req.body;
+        sequelize.query(`DROP TABLE IF EXISTS ${workoutName};
+                             CREATE TABLE ${workoutName}(
+                             num SERIAL PRIMARY KEY,
+                             exercise_name VARCHAR(20))`)
             .then(dbRes => {
                 res.status(200).send(dbRes)
             }).catch(err => console.log(err))

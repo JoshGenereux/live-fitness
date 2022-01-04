@@ -10,9 +10,10 @@ app.use(cors())
 
 app.post('/live-fitness', ctrl.seedWorkout)
 app.get('/live-fitness', ctrl.getWorkouts)
+app.post('/live-fitness/workout-table', ctrl.workoutTable)
 app.post('/live-fitness/add-to-table', ctrl.addTo)
 app.post('/live-fitness/workout/create-exercise-table', ctrl.createExerciseTable)
 app.post('/live-fitness/workout/save-set', ctrl.saveSet)
-app.post('live-fitness/workout/add-exercise', ctrl.addExercise)
+app.post('/live-fitness/workout/add-exercise', ctrl.addExercise)
 
 app.listen(SP, ()=>console.log(`Running on port ${SP}`))

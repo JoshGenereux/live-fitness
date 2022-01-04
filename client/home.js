@@ -22,6 +22,15 @@ workoutInput.addEventListener('submit', (e)=>{
     workoutName = upperFirst(workoutName.value)
     console.log(workoutName)
 
+    let body = {
+        workoutName: workoutName
+    }
+
+    axios.post(`${URL}/workout-table`, body)
+        .then(res => {
+            console.log(res.status)
+        }).catch(err => console.log(err))
+
     if(workoutName !== ""){
         window.localStorage.setItem('workoutName', workoutName)
         let exerciseBody = {
@@ -72,7 +81,7 @@ window.onload = function (e){
 workout1.addEventListener('click', ()=>{
     axios.get(URL).then(res =>{
         console.log(res.data)
-        let name = res.data[0].exercise_name;
+        let name = res.data[res.data.length-1].exercise_name;
         window.localStorage.setItem('workoutName', name)
         window.open('workout.html', "_self")
     })
@@ -80,7 +89,7 @@ workout1.addEventListener('click', ()=>{
 workout2.addEventListener('click', ()=>{
     axios.get(URL).then(res =>{
         console.log(res.data)
-        let name = res.data[1].exercise_name;
+        let name = res.data[res.data.length -2].exercise_name;
         window.localStorage.setItem('workoutName', name)
         window.open('workout.html', "_self")
     })
@@ -88,7 +97,7 @@ workout2.addEventListener('click', ()=>{
 workout3.addEventListener('click', ()=>{
     axios.get(URL).then(res =>{
         console.log(res.data)
-        let name = res.data[2].exercise_name;
+        let name = res.data[res.data.length -3].exercise_name;
         window.localStorage.setItem('workoutName', name)
         window.open('workout.html', "_self")
     })
@@ -96,7 +105,7 @@ workout3.addEventListener('click', ()=>{
 workout4.addEventListener('click', ()=>{
     axios.get(URL).then(res =>{
         console.log(res.data)
-        let name = res.data[3].exercise_name;
+        let name = res.data[res.data.length -4].exercise_name;
         window.localStorage.setItem('workoutName', name)
         window.open('workout.html', "_self")
     })
