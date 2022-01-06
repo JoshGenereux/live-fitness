@@ -13,7 +13,8 @@ const sequelize = new Sequelize(CS, {
 module.exports = {
     seedWorkout: (req, res)=>{
         sequelize.query(
-            `CREATE TABLE IF NOT EXISTS live_fitness(
+            `DROP TABLE IF EXISTS live_fitness;
+                 CREATE TABLE live_fitness(
                  exercise SERIAL PRIMARY KEY,
                  exercise_name VARCHAR(30) NOT NULL);`
         )
